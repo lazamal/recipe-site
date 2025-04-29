@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body dir = "rtl">
+    <h2>
+        ספר מתכונים יפן
+    </h2>
+    {% for food in foods %}
+    <div class = "food-item">
+        <h3>מנה: {{ food.food_name }}<h3>
+        <p>מצרכים: {{ food.ingredients }}</p>
+        <p>מתכון: {{ food.recepie }}</p>
+        <p>דירוג: {{ food.rating }}</p>
+    </div>
+    {% endfor %}
+
+</body>
+</html>

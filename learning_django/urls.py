@@ -14,19 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth.decorators import login_not_required
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from learning_django import views
+from japan_foods import views
+
 
 admin.site.site_header = "learning_django admin site"
 
 urlpatterns = [
+   
+    path('', include('japan_foods.urls')),
     path('admin/', admin.site.urls),
-    path('health_check', views.healthcheck, name='healthcheck'),
+    # path('health_check', views.healthcheck, name='healthcheck'),
     path('api-token-auth/', login_not_required(TokenObtainPairView.as_view()), name='api-token-obtain-pair'),
     path('api-token-refresh/', login_not_required(TokenRefreshView.as_view()), name='api-token-refresh'),
 ]
