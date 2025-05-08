@@ -24,7 +24,7 @@ def add_post(request):
         
     
 
-def search_food(request):
+def index(request):
     query = request.GET.get('q')
     food_checked = request.GET.get("food_name", None)
     ingredients_checked = request.GET.get('ingredients',None)
