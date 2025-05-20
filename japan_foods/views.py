@@ -22,7 +22,6 @@ def add_post(request):
             print(form.errors)  
             return render(request, 'japan_foods/add_post.html', {'form': form})
         
-    
 
 def index(request):
     query = request.GET.get('q')
@@ -64,6 +63,20 @@ def index(request):
     }
     
     return render(request, temp_name, context= context)
+
+# def single_post(request):
+#      if request.method == "GET":
+#         temp_name = 'japan_foods/add_post.html'
+#         return render(request = request, template_name= temp_name)
+#          elif request.method == "POST":
+#           form = FoodForm(request.POST)
+
+#         if form.is_valid():
+#             form.save()
+#             return redirect('japan_foods:index')
+#         else:
+#             print(form.errors)  
+#             return render(request, 'japan_foods/add_post.html', {'form': form})
 
 # class SearchResultsView(ListView):
 #     model = Food
