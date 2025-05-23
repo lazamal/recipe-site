@@ -60,6 +60,8 @@ def index(request):
     context = {
         'menu':results,
         'query':query,
+      
+
     }
     
     return render(request, temp_name, context= context)
