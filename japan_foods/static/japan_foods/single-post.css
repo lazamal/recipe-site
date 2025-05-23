@@ -1,0 +1,57 @@
+_/* single-post.css */
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fdfdfd;
+  color: #333;
+  margin: 2rem auto;
+  max-width: 700px;
+  padding: 0 1.5rem;
+  direction: rtl; /* keep RTL consistent */
+}
+
+.post-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+  padding: 2rem 2.5rem;
+  margin-top: 2rem;
+  position: relative;
+  text-align: right;
+}
+
+.post-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e74c3c; /* matching your .food-item h3 color */
+  margin-bottom: 1rem;
+}
+
+.post-content {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap; /* keep line breaks */
+  color: #444;
+}
+
+.post-meta {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 2rem;
+}
+
+.edit-post-link {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  color: #ff7f50;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.edit-post-link:hover {
+  color: #e06645;
+}
