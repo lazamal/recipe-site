@@ -48,7 +48,10 @@
     
     {% for food in menu %}
     <div class = "food-item">
-        <button href="{% url 'japan_foods:edit_post' %}"  name="edit_post_button" method = 'get'>כפתור </button>
+        <a href="{% url 'japan_foods:edit_post' food.id %}">
+            <button  name="edit_post_button" >כפתור </button>
+        </a>
+        
         <h3>מנה: {{ food.food_name }}</h3>
         <p>מצרכים: {{ food.ingredients }}</p>
         <p>מתכון: {{ food.recepie }}</p>
