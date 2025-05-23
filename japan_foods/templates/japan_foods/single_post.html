@@ -1,21 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>{{ post.title }}</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="{% static 'css/single-post.css' %}" />
   </head>
   <body>
-    {{ post.title }} {{ post.content }} {{ post.author }} {{ post.updated_at}}
-    <a href="{% url 'blog:edit_post' post.id %}">
-      <i class="fas fa-pencil-alt"></i>
-    </a>
+    <div class="post-container">
+      <a href="{% url 'blog:edit_post' post.id %}" class="edit-post-link" title="ערוך פוסט">
+        <i class="fas fa-pencil-alt"></i>
+      </a>
+      <h1 class="post-title">{{ post.title }}</h1>
+      <div class="post-content">{{ post.content }}</div>
+      <div class="post-meta">
+        נכתב על ידי {{ post.author }} | עודכן ב- {{ post.updated_at|date:"d/m/Y H:i" }}
+      </div>
+    </div>
   </body>
 </html>

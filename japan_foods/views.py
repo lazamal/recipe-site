@@ -64,19 +64,22 @@ def index(request):
     
     return render(request, temp_name, context= context)
 
-# def single_post(request):
-#      if request.method == "GET":
-#         temp_name = 'japan_foods/add_post.html'
-#         return render(request = request, template_name= temp_name)
-#          elif request.method == "POST":
-#           form = FoodForm(request.POST)
 
-#         if form.is_valid():
-#             form.save()
-#             return redirect('japan_foods:index')
-#         else:
-#             print(form.errors)  
-#             return render(request, 'japan_foods/add_post.html', {'form': form})
+def edit_post(request, post_id): 
+   post = Food.objects.get(id=post_id)
+   
+   temp_name = 'japan_foods/edit_post.html'
+   context = {
+       'post_id': post_id,
+       'post' : post
+   }
+   return render(request, temp_name, context= context)
+
+
+def single_post(request):
+        temp_name = 'japan_foods/single_post.html'
+        return render(request = request, template_name= temp_name)
+    
 
 # class SearchResultsView(ListView):
 #     model = Food

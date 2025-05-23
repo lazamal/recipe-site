@@ -28,13 +28,13 @@ h2 {
     align-items: center;
     flex-wrap: wrap; /* Added to handle smaller screens better */
     margin: 30px auto;
-    max-width: 500px;
+    max-width: 1000px;
     gap: 10px; /* Adds space between form elements */
 }
 
 .form-container input[type="text"],
 .form-container select {
-    width: 100%;
+    width: 150%;
     padding: 12px 20px;
     font-size: 16px;
     border: 2px solid #ccc;
@@ -93,7 +93,7 @@ h2 {
     padding: 1rem;
     margin-bottom: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    max-width: 600px;
+    max-width: 1000px;
     margin-inline: auto;
     text-align: right; /* Added right text alignment for better rtl layout */
 }
