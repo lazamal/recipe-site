@@ -1,57 +1,85 @@
-_/* single-post.css */
-
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fdfdfd;
-  color: #333;
-  margin: 2rem auto;
-  max-width: 700px;
-  padding: 0 1.5rem;
-  direction: rtl; /* keep RTL consistent */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #fff9f2, #ffe8d6);
+  margin: 0;
+  padding: 2rem;
+  direction: rtl;
+  color: #3e2f1c;
 }
 
 .post-container {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
-  padding: 2rem 2.5rem;
-  margin-top: 2rem;
+  max-width: 750px;
+  margin: 0 auto;
+  background-color: #fffdf7;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem 2rem;
   position: relative;
-  text-align: right;
-}
-
-.post-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #e74c3c; /* matching your .food-item h3 color */
-  margin-bottom: 1rem;
-}
-
-.post-content {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  white-space: pre-wrap; /* keep line breaks */
-  color: #444;
-}
-
-.post-meta {
-  font-size: 0.9rem;
-  color: #777;
-  margin-bottom: 2rem;
+  border: 1px solid #f7c59f;
 }
 
 .edit-post-link {
   position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  color: #ff7f50;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: color 0.3s ease;
+  left: 1rem;
+  top: 1rem;
+  background-color: #f8b400;
+  color: white;
+  padding: 0.5rem 0.7rem;
+  border-radius: 50%;
   text-decoration: none;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
 }
 
 .edit-post-link:hover {
-  color: #e06645;
+  background-color: #d48806;
+}
+
+.post-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #c44536;
+  border-bottom: 2px dashed #f4a261;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+.post-content {
+  font-size: 1.15rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+  color: #4a3f35;
+  background-color: #fff4e6;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.post-meta {
+  font-size: 0.9rem;
+  color: #805d45;
+  border-top: 1px solid #e9c46a;
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+.return-link {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: #fff5f2;
+    color: #e76f51;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border: 1px solid #eacac4;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.return-link:hover {
+    background-color: #ffe8e4;
+    color: #d35400;
 }

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
   <head>
@@ -10,16 +11,22 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="{% static 'css/single-post.css' %}" />
+    <link rel="stylesheet" href="{% static 'japan_foods/single-post.css' %}" />
   </head>
   <body>
     <div class="post-container">
-      <a href="{% url 'blog:edit_post' post.id %}" class="edit-post-link" title="ערוך פוסט">
+      <a href="{% url 'japan_foods:edit_post' post.id %}" class="edit-post-link" title="ערוך פוסט">
         <i class="fas fa-pencil-alt"></i>
       </a>
-      <h1 class="post-title">{{ post.title }}</h1>
-      <div class="post-content">{{ post.content }}</div>
+      <h1 class="post-title">{{ post.food_name }}</h1>
+      <div class="post-content"><strong>מצרכים:</strong> {{ post.ingredients }}</div>
+      <div class="post-content"><strong>מתכון:</strong> {{ post.recepie }}</div>
+      <div class="post-content"><strong>דירוג:</strong> {{ post.rating }}</div>
       <div class="post-meta">
+
+   <a href="{% url 'japan_foods:index' %}" class="return-link" title="חזור לרשימת המתכונים">
+  <i class="fas fa-arrow-right"></i> 
+</a>
         נכתב על ידי {{ post.author }} | עודכן ב- {{ post.updated_at|date:"d/m/Y H:i" }}
       </div>
     </div>
