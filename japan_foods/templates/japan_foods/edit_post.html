@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'japan_foods/form_style.css' %}">
+    <title>טופס אוכל</title>
+</head>
+<body>
+    <h1>הוספת אוכל</h1>
+    <form action="{% url 'japan_foods:edit_post' post_id %}" method="post">
+        {% csrf_token %}
+        <label for="food_name">שם האוכל:</label><br>
+        <input type="text" id="food_name" name="food_name" maxlength="30" required value="{{post.food_name}}"><br><br>
+        
+
+        <label for="ingredients">מצרכים:</label><br>
+        <textarea type="text" id="ingredients" name="ingredients" maxlength="1500" rows="5" cols="30" required > {{post.ingredients}}</textarea><br><br>
+       
+        <label for="recepie">מתכון:</label><br>
+        <textarea id="recepie" name="recepie" maxlength="1500" rows="5" cols="30" >{{post.recepie}}</textarea><br><br>
+
+        <label for="rating">דירוג (1-5):</label><br>
+        <input type="number" id="rating" name="rating" min="1" max="5" value="{{post.rating}}"><br><br>
+
+        <input type="submit" value="שלח">
+    </form>
+</body>
+</html>

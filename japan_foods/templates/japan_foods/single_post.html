@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ post.title }}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{% static 'japan_foods/single-post.css' %}" />
+  </head>
+  <body>
+    <div class="post-container">
+      <a href="{% url 'japan_foods:edit_post' post.id %}" class="edit-post-link" title="ערוך פוסט">
+        <i class="fas fa-pencil-alt"></i>
+      </a>
+      <h1 class="post-title">{{ post.food_name }}</h1>
+      <div class="post-content"><strong>מצרכים:</strong> {{ post.ingredients }}</div>
+      <div class="post-content"><strong>מתכון:</strong> {{ post.recepie }}</div>
+      <div class="post-content"><strong>דירוג:</strong> {{ post.rating }}</div>
+      <div class="post-meta">
+
+   <a href="{% url 'japan_foods:index' %}" class="return-link" title="חזור לרשימת המתכונים">
+  <i class="fas fa-arrow-right"></i> 
+</a>
+        נכתב על ידי {{ post.author }} | עודכן ב- {{ post.updated_at|date:"d/m/Y H:i" }}
+      </div>
+    </div>
+  </body>
+</html>

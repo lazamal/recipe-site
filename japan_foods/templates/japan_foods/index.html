@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'japan_foods/style.css' %}"/>
+    <title>Document</title>
+</head>
+<body dir = "rtl">
+    <h2>
+        ספר מתכונים יפן
+    </h2>
+    <div class="button-container">
+        <a href="{% url 'japan_foods:add_post' %}" class="add_post">הוסף מנה לספר המתכונים</a>
+    </div>
+
+
+    <form action="" method="get" class="form-container">
+        <input type="text" name="q" placeholder="חפש אוכל...">
+       חפש לפי:
+      
+        <label>
+            <input type="checkbox" name="food_name" value="true" {% if request.GET.food_name %}checked{% endif %}>
+             שם מנה
+        </label>
+    
+        <label>
+            <input type="checkbox" name="ingredients" value="true" {% if request.GET.ingredients %}checked{% endif %}>
+             מצרכים
+        </label>
+    
+        <label>
+            <input type="checkbox" name="recepie" value="true" {% if request.GET.recepie %}checked{% endif %}>
+             מתכון
+        </label>
+    
+        <select name="rating" class="rating-filter">
+            <option value="">בחר דירוג</option>
+            <option value="1" {% if request.GET.rating == "1" %}selected{% endif %}>1</option>
+            <option value="2" {% if request.GET.rating == "2" %}selected{% endif %}>2</option>
+            <option value="3" {% if request.GET.rating == "3" %}selected{% endif %}>3</option>
+            <option value="4" {% if request.GET.rating == "4" %}selected{% endif %}>4</option>
+            <option value="5" {% if request.GET.rating == "5" %}selected{% endif %}>5</option>
+        </select>
+        <button type="submit">חיפוש</button>
+    </form>
+    
+    {% for food in menu %}
+    <div class = "food-item">
+        <a href="{% url 'japan_foods:edit_post' food.id %}">
+            <button id="edit-button"  name="edit_post_button" >עריכה </button>
+        </a>
+        
+        <a href="{%url 'japan_foods:single_post' food.id %}"><h3>מנה: {{ food.food_name }}</h3></a>
+        <p>מצרכים: {{ food.ingredients }}</p>
+        <p class="ingredients">מצרכים: {{ food.ingredients }}</p>
+        <p class="recepie">מתכון: {{ food.recepie }}</p>
+        <p>דירוג: {{ food.rating }}</p>
+
+        <p>כותב: {{food.author.author_name}}</p>
+    </div>
+    {% endfor %}
+
+</body>
+</html>

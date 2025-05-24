@@ -48,9 +48,9 @@ class Base(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
     ]
-    LEARNING_DJANGO_APPS = []
+    LEARNING_DJANGO_APPS = ["japan_foods"]
     INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LEARNING_DJANGO_APPS
-
+        
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
@@ -239,3 +239,6 @@ class Production(Base):
         'querycount.middleware.QueryCountMiddleware'
 
     ]
+
+
+
