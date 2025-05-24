@@ -8,7 +8,10 @@ from django.utils import timezone
 class Author(models.Model):
       def __str__(self):
             return f'{self.author_name}'
-      author_name = models.ForeignKey(User, on_delete=models.CASCADE, null = True, unique=True)
+      author_name = models.OneToOneField(User, on_delete=models.CASCADE, null = True)
+
+
+
 
 class Food(models.Model):
     def __str__(self):
@@ -20,4 +23,13 @@ class Food(models.Model):
     rating = models.IntegerField(verbose_name="דירוג", validators=[MinValueValidator(1), MaxValueValidator(5)], null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    
+class Comment(models.Model):
+    def __str__(self):
+        return f'{self.writer}: {self.text[:30]}'
+
+    food = models.ForeignKey(Food, related_name="comments", on_delete=models.CASCADE)
+    text = models.CharField(verbose_name="תגובה", max_length=500, null=False)
+    writer = models.CharField(verbose_name="שם כותב", max_length=100, null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
    

@@ -46,8 +46,8 @@
         <button type="submit">חיפוש</button>
     </form>
     
-    {% for food in menu %}
-    <div class = "food-item">
+    {% for food in foods %}
+<div class = "food-item">
         <a href="{% url 'japan_foods:edit_post' food.id %}">
             <button id="edit-button"  name="edit_post_button" >עריכה </button>
         </a>
@@ -57,10 +57,40 @@
         <p class="ingredients">מצרכים: {{ food.ingredients }}</p>
         <p class="recepie">מתכון: {{ food.recepie }}</p>
         <p>דירוג: {{ food.rating }}</p>
-
         <p>כותב: {{food.author.author_name}}</p>
+
+         
+  
+    <div class="comment_form">
+    <form method="post">
+        {% csrf_token %}
+         <input type="hidden" name="form_type" value="comment_form">
+         <input type="hidden" name="food_id" value="{{ food.id }}">
+        <input type="text" name="writer" placeholder="השם שלך" required>
+        <textarea name="text" placeholder="כתוב תגובה..." required></textarea>
+        <button type="submit" name="comment_form" value="comment_form">הוסף תגובה</button>
+    </form>
     </div>
+
+    {% for comment in food.comments.all %}
+     <div class="comment">
+        <p> {{comment.writer}}</p>
+        <p> {{comment.text}}</p>
+        <p> {{comment.created_at}}</p>
+       
+        </div>
+         {% empty %}
+        <p>אין תגובות למנה זו עדיין.</p>
     {% endfor %}
+
+       
+    </div>
+</div>
+    {% endfor %}
+
+    
+ 
+      
 
 </body>
 </html>
