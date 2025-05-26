@@ -1,10 +1,11 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
-from japan_foods.models import Food, Author
+from japan_foods.models import Food, Author, Comment
 from .forms import FoodForm, CommentsForm
 from django.views.generic import TemplateView, ListView
 from django.db.models import Q
 import re
+from django.shortcuts import get_object_or_404
 
 
 
@@ -14,25 +15,6 @@ def get_author_for_user(user):
     response, created = Author.objects.get_or_create(author_name=user)
     return response
  
-
-def add_post(request):
-    if request.method == "GET":
-        temp_name = 'japan_foods/add_post.html'
-        return render(request = request, template_name= temp_name)
-    
-    elif request.method == "POST":
-        form = FoodForm(request.POST)
-        if form.is_valid():
-            food = form.save(commit=False)  
-            food.author = get_author_for_user(request.user)  
-            food.save() 
-            return redirect('japan_foods:index')
-        else:
-            print(form.errors)  
-            return render(request, 'japan_foods/add_post.html', {'form': form})
-        
-
-from django.shortcuts import get_object_or_404
 
 def index(request):
     temp_name = 'japan_foods/index.html'
@@ -96,6 +78,23 @@ def index(request):
             context["foods"] = Food.objects.all()
     
         return render(request, temp_name, context=context)
+    
+
+def add_post(request):
+    if request.method == "GET":
+        temp_name = 'japan_foods/add_post.html'
+        return render(request = request, template_name= temp_name)
+    
+    elif request.method == "POST":
+        form = FoodForm(request.POST)
+        if form.is_valid():
+            food = form.save(commit=False)  
+            food.author = get_author_for_user(request.user)  
+            food.save() 
+            return redirect('japan_foods:index')
+        else:
+            print(form.errors)  
+            return render(request, 'japan_foods/add_post.html', {'form': form})
 
 
 
@@ -138,6 +137,19 @@ def single_post(request, post_id):
             temp_name = 'japan_foods/single_post.html'
        
             return render(request = request, template_name= temp_name, context=context)
+        
+def edit_comment(request, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+   
+    context = {
+    
+        'comment' : comment
+    }
+    
+    if request.method == "GET":
+        temp_name='japan_foods/index.html'
+        print(comment_id)
+        return render(request, template_name=temp_name,context=context)
     
 
 

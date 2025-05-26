@@ -12,7 +12,6 @@ class Author(models.Model):
 
 
 
-
 class Food(models.Model):
     def __str__(self):
           return f'{self.food_name}'

@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'japan_foods/style.css' %}"/>
-    <title>Document</title>
+     <link  rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"    crossorigin="anonymous"  referrerpolicy="no-referrer"
+    />
+    <script src="{% static 'index_script.js' %}"></script>
+    <title>Japan-Foods</title>
 </head>
 <body dir = "rtl">
     <h2>
@@ -74,13 +77,23 @@
 
     {% for comment in food.comments.all %}
      <div class="comment">
+        <p>ID: {{ comment.id }}</p>
         <p> {{comment.writer}}</p>
         <p> {{comment.text}}</p>
         <p> {{comment.created_at}}</p>
-       
+          <a href="javascript:void(0);"><i class="fas fa-pencil-alt"></i></a>
+          <!-- hidden form to reveal with js -->
+           <div class="edit-comment-form" id=edit-comment-form-{{comment.id}} style="display:none" onclick="toggle-comment-form('comment_id')">
+            <form method="post" action="{% url 'japan_foods:edit_comment' comment.id % }">
+              <textarea name="text" placeholder="Edit your comment..."></textarea>
+             <button type="submit">שמור</button>
+        </form>
+          </div>
         </div>
          {% empty %}
         <p>אין תגובות למנה זו עדיין.</p>
+
+       
     {% endfor %}
 
        
