@@ -169,6 +169,7 @@ class Base(Configuration):
     STATIC_ROOT = BASE_DIR / 'static'
     STATIC_URL = '/static/'
 
+
     STORAGES = {
         "default":
             {"BACKEND": 'storages.backends.s3.S3Storage'},

@@ -1,9 +1,0 @@
-function toggleEditForm(id) {
-  const form = document.getElementById(id);
-  console.log('edit comment form is',form.id)
-//   if (form.style.display === "none") {
-//     form.style.display = "block";
-//   } else {
-//     form.style.display = "none";
-//   }
-}

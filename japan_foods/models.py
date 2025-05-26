@@ -12,6 +12,7 @@ class Author(models.Model):
 
 
 
+
 class Food(models.Model):
     def __str__(self):
           return f'{self.food_name}'
@@ -28,6 +29,7 @@ class Comment(models.Model):
         return f'{self.writer}: {self.text[:30]}'
 
     food = models.ForeignKey(Food, related_name="comments", on_delete=models.CASCADE)
+    
     text = models.CharField(verbose_name="תגובה", max_length=500, null=False)
     writer = models.CharField(verbose_name="שם כותב", max_length=100, null=False)
     created_at = models.DateTimeField(auto_now_add=True)

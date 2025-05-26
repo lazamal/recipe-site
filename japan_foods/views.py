@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
 from japan_foods.models import Food, Author, Comment
-from .forms import FoodForm, CommentsForm
+from .forms import FoodForm, CommentsForm, CommentEditForm
 from django.views.generic import TemplateView, ListView
 from django.db.models import Q
 import re
@@ -14,7 +14,7 @@ from django.shortcuts import get_object_or_404
 def get_author_for_user(user):
     response, created = Author.objects.get_or_create(author_name=user)
     return response
- 
+
 
 def index(request):
     temp_name = 'japan_foods/index.html'
@@ -59,7 +59,7 @@ def index(request):
         return render(request, temp_name, context=context)
 
     elif request.method == "POST":
-        form_type = request.POST.get("comment_form")
+        form_type = request.POST.get("form_type")
         if form_type == 'comment_form':
             form = CommentsForm(request.POST)
             if form.is_valid():
@@ -74,10 +74,30 @@ def index(request):
             else:
                 print(form.errors)
             # Update context with refreshed foods and form
+            # context["form"] = form
+            # context["foods"] = Food.objects.all()
+            return render(request, temp_name, context=context)
+    
+        elif form_type == "comment_edit_form":
+            
+            comment_id = request.POST.get('comment_id')
+            comment_instance = get_object_or_404(Comment, id=comment_id)
+            form = CommentEditForm(request.POST, instance=comment_instance)
+            if form.is_valid():
+                new_comment = form.save(commit=False)
+                new_comment.save()
+                form = CommentEditForm()
+                return redirect(request.path)
+            else:
+                print(form.errors)
             context["form"] = form
             context["foods"] = Food.objects.all()
+            return render(request, temp_name, context=context)
+    return render(request, temp_name, context=context)
+                
+           
     
-        return render(request, temp_name, context=context)
+        
     
 
 def add_post(request):
@@ -138,19 +158,6 @@ def single_post(request, post_id):
        
             return render(request = request, template_name= temp_name, context=context)
         
-def edit_comment(request, comment_id):
-    comment = Comment.objects.get(id=comment_id)
-   
-    context = {
-    
-        'comment' : comment
-    }
-    
-    if request.method == "GET":
-        temp_name='japan_foods/index.html'
-        print(comment_id)
-        return render(request, template_name=temp_name,context=context)
-    
 
 
    

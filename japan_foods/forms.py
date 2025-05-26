@@ -10,3 +10,8 @@ class CommentsForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['text', 'writer']
+
+class CommentEditForm(forms.ModelForm):
+     class Meta:
+        model = Comment
+        fields = ['text']

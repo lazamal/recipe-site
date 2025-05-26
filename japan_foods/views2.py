@@ -54,17 +54,3 @@ def add_post(request):
     })
 
 
-def edit_post(request, post_id):
-    post = Post.objects.get(id=post_id)
-    
-    if request.method == "POST":
-        post.title = request.POST.get('title')
-        post.updated_at = datetime.now()
-        post.save()
-        return redirect('blog:single_post', post_id=post.id)
-    
-    temp_name = "blog/edit_post.html"
-    context = {
-        "post": post
-    }
-    return render(request=request, template_name=temp_name, context=context)
