@@ -58,7 +58,6 @@
         </a>
 
         <a href="{% url 'japan_foods:single_post' food.id %}"><h3>מנה: {{ food.food_name }}</h3></a>
-        <p>מצרכים: {{ food.ingredients }}</p>
         <p class="ingredients">מצרכים: {{ food.ingredients }}</p>
         <p class="recepie">מתכון: {{ food.recepie }}</p>
         <p>דירוג: {{ food.rating }}</p>
@@ -77,19 +76,32 @@
 
         {% for comment in food.comments.all %}
         <div class="comment">
-            <div id="comment_{{ comment.id }}" style="display:block">
-                <p>{{ comment.writer }}</p>
-                <p>{{ comment.text }}</p>
-                <p>{{ comment.created_at }}</p>
-                <a href="javascript:void(0);" onclick="toggle_comment_form('{{ comment.id }}')">
-                    <i class="fas fa-pencil-alt"></i>
-                </a>
-            </div>
+              <div class="delete-icon" id='delete-icon{{ comment.id }}' onclick="toggleDeleteComment('{{ comment.id }}')">
+                 <i class="fas fa-trash-alt"></i>
+              </div>
+
+                <div class="delete-comment-form" id="delete_comment_form{{ comment.id }}" style="display:none">
+                    <div class="close-delete" onclick="toggleDeleteComment('{{ comment.id }}')">
+                        <i class="fas fa-times"></i>
+                  </div>          
+                  <div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="form_type" value="delete_comment_form" />
+                        <input type="hidden" name="comment_id" value="{{ comment.id }}" />
+                        <p>האם אתה בטוח שברצונך למחוק תגובה זו? </p>
+                        <button type="submit">מחק</button>
+                        <button type="button" onclick="toggleDeleteComment('{{ comment.id }}')">ביטול</button>
+                    </form>
+                    </div>
+                </div>
+
+             
 
             <div class="edit-comment-form" id="form_{{ comment.id }}" style="display:none">
                 <div class="close-edit" onclick="toggle_comment_form('{{ comment.id }}')">
-        <i class="fas fa-times"></i>
-    </div>
+                 <i class="fas fa-times"></i>
+                 </div>
                 <form method="post">
                     {% csrf_token %}
                     <input type="hidden" name="form_type" value="comment_edit_form" />
@@ -98,9 +110,19 @@
                     <button type="submit">שמור</button>
                 </form>
             </div>
-        </div>
+
+               <div id="comment_{{ comment.id }}" style="display:block">
+                <p class="comment-writer"><strong>{{ comment.writer }}</strong></p>
+                <p>{{ comment.text }}</p>
+                <p><i>{{ comment.created_at }}</i></p>
+                <a href="javascript:void(0);" onclick="toggle_comment_form('{{ comment.id }}')">
+                    <i class="fas fa-pencil-alt"></i>
+                </a>
+                </div>  
+        
+         </div>
         {% empty %}
-        <p>אין תגובות למנה זו עדיין.</p>
+        <p class="no-comments-message">אין תגובות למנה זו עדיין.</p>
         {% endfor %}
     </div>
     {% endfor %}

@@ -188,9 +188,13 @@ h2 {
     direction: rtl;
 }
 
+.comment-writer {
+    /* color: black !important; */
+}
+
 .comment_form input[type="text"],
 .comment_form textarea {
-    width: 100%;
+    width: 95%;
     padding: 10px 14px;
     margin-bottom: 1rem;
     font-size: 1rem;
@@ -228,6 +232,7 @@ h2 {
 }
 
 .comment {
+     position: relative;
     max-width: 1000px;
     background-color: #fff5f2; /* like recepie bg */
     padding: 1rem 1.2rem;
@@ -329,3 +334,129 @@ h2 {
 .edit-comment-form .close-edit:hover {
     color: #b71c1c;
 }
+
+.fas {
+  cursor: pointer;
+  margin: 0 6px;
+  font-size: 1.1rem;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.fa-pencil-alt {
+  color: #ff7043; /* soft orange */
+  background-color: #ffe0b2;
+}
+
+.fa-pencil-alt:hover {
+  background-color: #ffccbc;
+  color: #e64a19;
+}
+
+.fa-trash-alt {
+ 
+  color: #d84315; /* deeper orange/red */
+  background-color: #fbe9e7;
+
+}
+
+.fa-trash-alt:hover {
+  background-color: #f8bbd0;
+  color: #b71c1c;
+}
+.delete-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #fbe9e7;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 10; /* ensures it appears above other content */
+}
+
+.delete-icon:hover {
+  background-color: #f8bbd0;
+}
+
+.delete-icon .fa-trash-alt {
+  color: #d84315;
+  font-size: 1rem;
+}
+
+
+.delete-comment-form {
+  background-color: #fff3e0;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(255, 112, 67, 0.15);
+  border-right: 5px solid #ffccbc;
+  margin-top: 0.5rem;
+  position: relative;
+  max-width: 1000px;
+  margin-inline: auto;
+  direction: rtl;
+  display: none; /* hidden by default, toggled via JS */
+}
+
+.delete-comment-form p {
+  font-size: 1rem;
+  color: #4e342e;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.delete-comment-form button {
+  background: linear-gradient(135deg, #ff5252, #ff8a80);
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 10px 22px;
+  margin: 0px 10px 0px 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 82, 82, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.delete-comment-form button:hover {
+  background: linear-gradient(135deg, #e53935, #ff5252);
+  box-shadow: 0 6px 14px rgba(229, 57, 53, 0.5);
+}
+
+.delete-comment-form .close-delete {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  color: #d84315;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.delete-comment-form .close-delete:hover {
+  color: #b71c1c;
+}
+
+.no-comments-message {
+    max-width: 1000px;
+    margin: 1rem auto 1rem auto !important; /* 2rem top margin, 1rem bottom margin */
+    padding: 0.5rem 1rem;
+    background-color: #fff8f5;
+    /* border-right: 3px solid #ffb74d; */
+    color: #8d6e63;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    box-shadow: none;
+    border-radius: 8px;
+    direction: rtl;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+}
+
+
